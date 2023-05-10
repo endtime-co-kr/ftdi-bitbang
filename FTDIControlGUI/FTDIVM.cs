@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,7 +17,7 @@ namespace FTDIControlGUI
         private int _deviceId;
         private int _portNum;
         private FTDI _ftdi;
-
+        
         public int PortNumber
         {
             get => _portNum;
@@ -62,11 +63,29 @@ namespace FTDIControlGUI
             }
         }
 
+        private void ReadPortValue()
+        {
+
+        }
+
         public FTDIVM(ref FTDI ftdi, int index, int portNum)
         {
             _ftdi = ftdi;
             _deviceId = index;
             _portNum = portNum;
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    byte[] data_out = new byte[8];
+                    byte readState = 0x00;
+                    var r = _ftdi.GetPinStates(ref readState);
+                    Application.Current.Dispatcher.Invoke(() =>
+                        ReadVal = ((readState & (1 << portNum)) >> portNum).ToString("X")
+                    );
+                    Thread.Sleep(500);
+                }
+            });
         }
 
         private void ChangePortMode()
@@ -81,11 +100,7 @@ namespace FTDIControlGUI
             }
             _ftdi.SetBitMode(_bitMask[_deviceId], 0x01);
 
-            byte[] data_out = new byte[8];
-            uint readByte = 0;
             
-            _ftdi.Read(data_out, 1, ref readByte);
-            ReadVal = data_out[0].ToString("X");
         }
 
         private void ChangePortValue()
