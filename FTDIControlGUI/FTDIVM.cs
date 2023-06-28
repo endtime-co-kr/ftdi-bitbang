@@ -83,7 +83,7 @@ namespace FTDIControlGUI
                     Application.Current.Dispatcher.Invoke(() =>
                         ReadVal = ((readState & (1 << portNum)) >> portNum).ToString("X")
                     );
-                    Thread.Sleep(500);
+                    Thread.Sleep(10);
                 }
             });
         }

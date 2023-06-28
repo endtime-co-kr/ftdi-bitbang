@@ -53,7 +53,7 @@ namespace FTDIControlGUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FTDIControlGUI;component/portui.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FTDIControlGUI;V1.0.0.0;component/portui.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PortUI.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

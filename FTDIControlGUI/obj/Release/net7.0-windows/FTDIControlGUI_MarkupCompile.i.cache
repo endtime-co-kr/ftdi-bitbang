@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\업무\5G\FTDIControlGUI\FTDIControlGUI\FTDIControlGUI\obj\Release\net7.0-windows\
+D:\업무\제어SW\FTDIControlGUI\FTDIControlGUI\FTDIControlGUI\obj\Release\net7.0-windows\
 FTDIControlGUI
 none
 false
 TRACE;RELEASE;NET;NET7_0;NETCOREAPP
-D:\업무\5G\FTDIControlGUI\FTDIControlGUI\FTDIControlGUI\App.xaml
+D:\업무\제어SW\FTDIControlGUI\FTDIControlGUI\FTDIControlGUI\App.xaml
 2-828661412
 
-10-1797712559
+11568468297
 198-1736014856
 MainWindow.xaml;PortUI.xaml;
 
-True
+False
 

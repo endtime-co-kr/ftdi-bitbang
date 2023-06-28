@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FTDIControlGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="554">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <DataGrid ItemsSource="{Binding FtdiCollection}" AutoGenerateColumns="False" Visibility="Collapsed">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="560*"/>
+            <ColumnDefinition Width="241*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding FtdiCollection}" AutoGenerateColumns="False" Visibility="Collapsed" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Num." Binding="{Binding IsOutput, Mode=TwoWay}"/>
                 <DataGridCheckBoxColumn Header="Name" Binding="{Binding IsHigh, Mode=TwoWay}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ItemsControl ItemsSource="{Binding FtdiCollection}">
+        <ItemsControl ItemsSource="{Binding FtdiCollection}" Margin="0,0,151,0" Grid.ColumnSpan="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
@@ -27,7 +31,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="40" Text="{Binding DeviceId}" TextAlignment="Center"/>
-                        <TextBlock Width="30" Text="{Binding PortNumber}" TextAlignment="Center"/> 
+                        <TextBlock Width="30" Text="{Binding PortNumber}" TextAlignment="Center"/>
                         <CheckBox Width="80" Content="Output" VerticalContentAlignment="Center" IsChecked="{Binding IsOutput}"/>
                         <CheckBox Width="80" Content="High" VerticalContentAlignment="Center" IsChecked="{Binding IsHigh}" IsEnabled="{Binding IsOutput}"/>
                         <TextBlock Width="30" Text="{Binding ReadVal}" TextAlignment="Center"/>
@@ -35,5 +39,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <TextBlock Text="{Binding RunMessage}" Margin="0,188,0,341" Grid.Column="1" HorizontalAlignment="Stretch" Width="NaN"/>
+        <Button Command="{Binding CommandOpen}" Content="Open" Margin="0,262,0,272" Grid.Column="1" HorizontalAlignment="Stretch"/>
     </Grid>
 </Window>
